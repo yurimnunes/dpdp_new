@@ -152,7 +152,7 @@ def eval_dataset(dataset_path, beam_size, opts):
         dataset = pack_heatmaps(dataset, opts)
         results = _eval_dataset(problem, dataset, beam_size, opts, device, no_progress_bar=opts.no_progress_bar)
 
-    costs, durations, tours = print_statistics(results, opts)
+    #costs, durations, tours = print_statistics(results, opts)
 
     dataset_basename, ext = os.path.splitext(os.path.split(dataset_path)[-1])
     heatmap_basename = os.path.splitext(os.path.split(opts.heatmap)[-1])[0] if opts.heatmap is not None else ""
@@ -177,7 +177,6 @@ def eval_dataset(dataset_path, beam_size, opts):
     assert opts.f or not os.path.isfile(
         out_file), "File already exists! Try running with -f option to overwrite."
 
-    print(out_file)
     # Save the options so we can recall everything
     save_dataset((results, opts), out_file)
 
@@ -263,7 +262,6 @@ def _eval_dataset(problem, dataset, beam_size, opts, device, no_progress_bar=Fal
 
         assert len(sequences) == batch_size
         duration = time.time() - start
-        # print(sequences, costs)
         for seq, cost in zip(sequences, costs):
             if problem.NAME in ("tsp", "tsptw"):
                 if seq is not None:  # tsptw can be infeasible or TSP failed with sparse graph

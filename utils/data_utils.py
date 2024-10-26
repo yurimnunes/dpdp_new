@@ -22,6 +22,11 @@ def save_dataset(dataset, filename):
 
 def load_dataset(filename):
 
+    # if extension is txt, read as text and convert to numpy array
+    if os.path.splitext(filename)[1] == ".npy":
+        # eval it as numpy array
+        return np.load(filename, allow_pickle=True)
+    
     with open(check_extension(filename), 'rb') as f:
         return pickle.load(f)
 

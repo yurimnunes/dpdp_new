@@ -1,10 +1,12 @@
 {
   "expt_name": "default",
 
-  "train_filepath": "./data/tsp10_train_concorde.txt",
-  "val_filepath": "./data/tsp10_val_concorde.txt",
-  "test_filepath": "./data/tsp10_test_concorde.txt",
-
+  "train_filepath": "/data/dpdp/tsp10_train.npy",
+  "val_filepath": "/data/dpdp/tsp10_val.npy",
+  "test_filepath": "/data/dpdp/tsp10_test.npy",
+  "train_filepath_solution": "/data/dpdp/tsp10_solucao_train.npy",
+  "val_filepath_solution": "/data/dpdp/tsp10_solucao_val.npy",
+  "test_filepath_solution": "/data/dpdp/tsp10_solucao_test.npy",
   "num_nodes": 10,
   "num_neighbors": -1,
     
@@ -25,7 +27,7 @@
   "val_every": 5,
   "test_every": 10,
 
-  "batch_size": 20,
+  "batch_size": 6,
   "batches_per_epoch": 500,
   "accumulation_steps": 1,
 

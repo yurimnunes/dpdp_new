@@ -1,7 +1,7 @@
 import torch
 import torch.nn.functional as F
 import torch.nn as nn
-from torch_scatter import scatter
+#from torch_scatter import scatter
 
 
 class BatchNormNode(nn.Module):
@@ -104,8 +104,6 @@ class NodeFeatures(nn.Module):
         else:
 
             x_new = self._inner(edge_gate, Ux, Vx)
-            # print("Dense x", edge_gate.size(), Ux.size(), Vx.size())
-            # print(x_new.flatten()[-10:])
         return x_new
 
     def _inner(self, edge_gate, Ux, Vx):

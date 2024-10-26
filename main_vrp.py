@@ -302,7 +302,6 @@ def main(config):
     net = nn.DataParallel(ResidualGatedGCNModelVRP(config, dtypeFloat, dtypeLong))
     if torch.cuda.is_available():
         net.cuda()
-    print(net)
 
     # Compute number of network parameters
     nb_param = 0

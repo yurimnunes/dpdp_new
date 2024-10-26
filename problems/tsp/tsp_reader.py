@@ -37,7 +37,7 @@ class TSPReader(object):
         self.target_filepath = target_filepath
         if target_filepath is not None:
             self.has_target = True
-            target_filedata, parallelism = load_dataset(target_filepath)
+            target_filedata = load_dataset(target_filepath)
             self.filedata = list([(inst, sol) for inst, sol in zip(filedata, target_filedata) if sol is not None])
         else:
             self.has_target = False
@@ -58,6 +58,7 @@ class TSPReader(object):
         for batch in range(self.max_iter):
             start_idx = batch * self.batch_size
             end_idx = (batch + 1) * self.batch_size
+            # print the data to be processed
             yield self.process_batch(self.filedata[start_idx:end_idx])
 
     def process_batch(self, batch):
@@ -74,6 +75,13 @@ class TSPReader(object):
 
         # for line_num, line in enumerate(lines):
         for nodes_coord, sol in batch:
+            # compute the cost of the solution
+            check_cost = 0
+            for i in sol:
+                check_cost += np.linalg.norm(nodes_coord[i][0] - nodes_coord[i][1])
+
+            check_cost += np.linalg.norm(nodes_coord[sol[-1]][0] - nodes_coord[sol[0]][1])
+
             #             line = line.split(" ")  # Split into list
             if self.do_prep:
                 # Compute signal on nodes
@@ -100,7 +108,7 @@ class TSPReader(object):
                 np.fill_diagonal(W, 2)  # Special token for self-connections
 
             if sol is not None:
-                check_cost, tour_nodes, duration = sol
+                tour_nodes = sol
 
                 if self.do_prep:
                     # Compute node and edge representation of tour + tour_len

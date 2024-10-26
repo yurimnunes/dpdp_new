@@ -137,6 +137,5 @@ if __name__ == "__main__":
                 else:
                     assert False, "Unknown problem: {}".format(problem)
 
-                print(dataset[0])
 
                 save_dataset(dataset, filename)

@@ -338,7 +338,6 @@ def main(config):
     net = nn.DataParallel(model)
     if torch.cuda.is_available():
         net.cuda()
-    print(net)
 
     # Compute number of network parameters
     nb_param = 0
@@ -369,7 +368,7 @@ def main(config):
 
     # Define optimizer
     optimizer = torch.optim.Adam(net.parameters(), lr=learning_rate)
-    print(optimizer)
+
     dataset = DataReader(
         config.num_nodes, config.num_neighbors, config.batch_size,
         config.train_filepath, config.train_filepath_solution,
@@ -418,25 +417,29 @@ def main(config):
             writer.add_scalar('optimality_gap/val_opt_gap', val_pred_tour_len/val_gt_tour_len - 1, epoch)
             
             # Save checkpoint
+            # Save checkpoint based on best validation tour length
+            '''
             if val_pred_tour_len < best_pred_tour_len:
                 best_pred_tour_len = val_pred_tour_len  # Update best val predicted tour length
                 torch.save({
                     'epoch': epoch,
                     'model_state_dict': net.state_dict(),
                     'optimizer_state_dict': optimizer.state_dict(),
-                    'train_loss': train_loss,
-                    'val_loss': val_loss,
-                }, log_dir+"best_val_tourlen_checkpoint.tar")
+                    'train_loss': float(train_loss) if isinstance(train_loss, torch.Tensor) else train_loss,
+                    'val_loss': float(val_loss) if isinstance(val_loss, torch.Tensor) else val_loss,
+                }, log_dir + "/best_val_tourlen_checkpoint.tar")
 
+            # Save checkpoint based on best validation loss
             if val_loss < best_val_loss:
                 best_val_loss = val_loss  # Update best val loss
                 torch.save({
                     'epoch': epoch,
                     'model_state_dict': net.state_dict(),
                     'optimizer_state_dict': optimizer.state_dict(),
-                    'train_loss': train_loss,
-                    'val_loss': val_loss,
-                }, log_dir+"best_val_loss_checkpoint.tar")
+                    'train_loss': float(train_loss) if isinstance(train_loss, torch.Tensor) else train_loss,
+                    'val_loss': float(val_loss) if isinstance(val_loss, torch.Tensor) else val_loss,
+                }, log_dir + "/best_val_loss_checkpoint.tar")
+            '''
 
             # Update learning rate
             if val_loss > 0.99 * val_loss_old:
@@ -455,10 +458,11 @@ def main(config):
             writer.add_scalar('optimality_gap/test_opt_gap', test_pred_tour_len/test_gt_tour_len - 1, epoch)
         
         # Save training checkpoint at the end of epoch
+        '''
         torch.save({
             'epoch': epoch,
             'model_state_dict': net.state_dict(),
-            'optimizer_state_dict': optimizer.state_dict(),
+            #'optimizer_state_dict': optimizer.state_dict(),
             'train_loss': train_loss,
             'val_loss': val_loss,
         }, log_dir+"last_train_checkpoint.tar")
@@ -468,11 +472,11 @@ def main(config):
             torch.save({
                 'epoch': epoch,
                 'model_state_dict': net.state_dict(),
-                'optimizer_state_dict': optimizer.state_dict(),
+                #'optimizer_state_dict': optimizer.state_dict(),
                 'train_loss': train_loss,
                 'val_loss': val_loss,
             }, log_dir+f"checkpoint_epoch{epoch}.tar")
-        
+        '''
     return net
 
 
