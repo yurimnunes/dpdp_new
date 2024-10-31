@@ -123,6 +123,7 @@ instance_filepath = args.instances
 if args.problem == 'vrp':
     reader = VRPReader(num_nodes, num_neighbors, batch_size, instance_filepath)
 else:
+    train_target_filepath = 'tsp10_solucao_val.npy'
     DataReader = DataReader = TSPTWReader if args.problem == 'tsptw' else TSPReader
     reader = DataReader(num_nodes, num_neighbors, batch_size, instance_filepath, do_prep=not do_prepwrap)
 

@@ -77,10 +77,11 @@ class TSPReader(object):
         for nodes_coord, sol in batch:
             # compute the cost of the solution
             check_cost = 0
-            for i in sol:
-                check_cost += np.linalg.norm(nodes_coord[i][0] - nodes_coord[i][1])
+            if sol is not None:
+                for i in sol:
+                    check_cost += np.linalg.norm(nodes_coord[i][0] - nodes_coord[i][1])
 
-            check_cost += np.linalg.norm(nodes_coord[sol[-1]][0] - nodes_coord[sol[0]][1])
+                check_cost += np.linalg.norm(nodes_coord[sol[-1]][0] - nodes_coord[sol[0]][1])
 
             #             line = line.split(" ")  # Split into list
             if self.do_prep:

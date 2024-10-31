@@ -458,7 +458,7 @@ def main(config):
             writer.add_scalar('optimality_gap/test_opt_gap', test_pred_tour_len/test_gt_tour_len - 1, epoch)
         
         # Save training checkpoint at the end of epoch
-        '''
+        
         torch.save({
             'epoch': epoch,
             'model_state_dict': net.state_dict(),
@@ -476,7 +476,7 @@ def main(config):
                 'train_loss': train_loss,
                 'val_loss': val_loss,
             }, log_dir+f"checkpoint_epoch{epoch}.tar")
-        '''
+        
     return net
 
 
