@@ -1,4 +1,7 @@
-data/
+#data/
+data/tsp
+data/vrp
+data/Vrp-Set-XML100
 logs/
 results/
 plots/
