@@ -28,7 +28,7 @@ def le_instancia_solucao(instancia, solucao):
 #Programa para tratamento das variáveis: https://github.com/sudhan-bhattarai/
 #   CVRPTW_MILP/blob/master/CVRPTW.py
 
-def le_cvrptw(instancia, solucao):    
+def le_cvrptw(instancia:str, solucao:str):    
             
     nome_da_instancia = instancia['name']
     comentario_instancia = instancia['comment']
@@ -79,9 +79,11 @@ def le_cvrptw(instancia, solucao):
     
 #------------------------------------------------------------------------------
 import sys
-instancia, solucao = le_instancia_solucao("./Vrp-Set-XML100/instances/XML100_1111_01.vrp",
-                                          "./Vrp-Set-XML100/solutions/XML100_1111_01.sol")
-#x = le_cvrptw(instancia, solucao)
+instancia = ("./data/Vrp-Set-XML100/instances/XML100_1111_01.vrp",
+             "./data/Vrp-Set-XML100/solutions/XML100_1111_01.sol")
+instancia, solucao = le_instancia_solucao(instancia[0], instancia[1])
+                                          
+x = le_cvrptw(instancia, solucao)
 
 # A partir deste ponto serão gerados todos os dados necessários à Rede Neural.
 nome_da_instancia = instancia['name']
