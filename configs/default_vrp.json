@@ -23,12 +23,12 @@
 
   "beam_size": 1,
 
-  "hidden_dim": 100,
-  "num_layers": 10,
+  "hidden_dim": 300,
+  "num_layers": 30,
   "mlp_layers": 3,
   "aggregation": "mean",
 
-  "max_epochs": 10,
+  "max_epochs": 1500,
   "val_every": 5,
   "test_every": 100,
 
