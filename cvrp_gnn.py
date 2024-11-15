@@ -3,7 +3,6 @@
 import vrplib
 import numpy as np
 
-print('aaaaa')
 
 def le_instancia_solucao(instancia, solucao):
     
@@ -87,9 +86,9 @@ diretorio_inst = "./data/Vrp-Set-XML100/instances/"
 lista_arquivos = os.listdir(diretorio_inst)
 
 #############################
-#for ii in range(len(lista_arquivos)):
-for ii in range(1000):
-    print(ii)
+for ii in range(len(lista_arquivos)):
+#for ii in range(1000):
+    #print(ii)
     inst =  diretorio_inst + lista_arquivos[ii]
     instancia = vrplib.read_instance(inst)
 
@@ -177,8 +176,8 @@ print("Dados salvos em arquivos .npy com sucesso!")
 dados_saida_gnn = []
 diretorio_solutions = "./data/Vrp-Set-XML100/solutions/"
 lista_arquivos = os.listdir(diretorio_solutions)
-#for ii in range(len(lista_arquivos)):
-for ii in range(1000):
+for ii in range(len(lista_arquivos)):
+#for ii in range(1000):
     sol = diretorio_solutions + lista_arquivos[ii]
     solucao = vrplib.read_solution(sol)
 
