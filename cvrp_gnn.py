@@ -3,6 +3,8 @@
 import vrplib
 import numpy as np
 
+print('aaaaa')
+
 def le_instancia_solucao(instancia, solucao):
     
     #Origem da informação sobre benchmarking: 
@@ -85,8 +87,10 @@ diretorio_inst = "./data/Vrp-Set-XML100/instances/"
 lista_arquivos = os.listdir(diretorio_inst)
 
 #############################
-for i in range(len(lista_arquivos)):
-    inst =  diretorio_inst + lista_arquivos[i]
+#for ii in range(len(lista_arquivos)):
+for ii in range(1000):
+    print(ii)
+    inst =  diretorio_inst + lista_arquivos[ii]
     instancia = vrplib.read_instance(inst)
 
     # A partir deste ponto serão gerados todos os dados necessários à Rede Neural.
@@ -173,8 +177,9 @@ print("Dados salvos em arquivos .npy com sucesso!")
 dados_saida_gnn = []
 diretorio_solutions = "./data/Vrp-Set-XML100/solutions/"
 lista_arquivos = os.listdir(diretorio_solutions)
-for i in range(len(lista_arquivos)):
-    sol = diretorio_solutions + lista_arquivos[i]
+#for ii in range(len(lista_arquivos)):
+for ii in range(1000):
+    sol = diretorio_solutions + lista_arquivos[ii]
     solucao = vrplib.read_solution(sol)
 
     # A partir deste ponto serão gerados todos os dados necessários à Rede Neural.

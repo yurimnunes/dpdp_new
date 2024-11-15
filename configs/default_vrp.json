@@ -1,0 +1,46 @@
+{
+  "expt_name": "default_vrp",
+
+  "train_filepath": "./dados_treino.npy",
+  "train_filepath_solution": "./dados_solucao_treino.npy",
+
+  "val_filepath": "./dados_validacao.npy",
+  "val_filepath_solution": "./dados_solucao_validacao.npy",
+
+  "test_filepath": "./dados_teste.npy",
+  "test_filepath_solution": "./dados_solucao_teste.npy",
+
+
+
+  "num_nodes": 100,
+  "num_neighbors": -1,
+    
+  "node_dim": 3,
+  "voc_nodes_in": 2,
+  "voc_nodes_out": 2,
+  "voc_edges_in": 6,
+  "voc_edges_out": 2,
+
+  "beam_size": 1,
+
+  "hidden_dim": 100,
+  "num_layers": 10,
+  "mlp_layers": 3,
+  "aggregation": "mean",
+
+  "max_epochs": 10,
+  "val_every": 5,
+  "test_every": 100,
+
+  "batch_size": 48,
+  "batches_per_epoch": 500,
+  "accumulation_steps": 1,
+
+  "learning_rate": 0.001,
+  "decay_rate": 1.01
+}
+
+
+
+
+

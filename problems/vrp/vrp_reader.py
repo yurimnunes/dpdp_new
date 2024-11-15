@@ -52,7 +52,8 @@ class VRPReader(object):
         self.target_filepath = target_filepath
         if target_filepath is not None:
             self.has_target = True
-            target_filedata, parallelism = load_dataset(target_filepath)
+            #target_filedata, parallelism = load_dataset(target_filepath)
+            target_filedata = load_dataset(target_filepath)
             self.filedata = list([(inst, sol) for inst, sol in zip(filedata, target_filedata) if sol is not None])
         else:
             self.has_target = False
@@ -155,7 +156,8 @@ class VRPReader(object):
             # dummy for now, no supervision!
 
             if sol is not None:
-                cost, solution, duration = sol
+                #cost, solution, duration = sol
+                solution = sol
 
                 # Prepend and append depot just in case (duplicate depot adds no distance)
                 tour_nodes = np.array([0] + solution + [0])

@@ -27,7 +27,8 @@ from models.gcn_model_vrp import ResidualGatedGCNModelVRP
 
 
 parser = argparse.ArgumentParser(description='gcn_tsp_parser')
-parser.add_argument('-c','--config', type=str, default="configs/default.json")
+#parser.add_argument('-c','--config', type=str, default="configs/default.json")
+parser.add_argument('-c','--config', type=str, default="configs/default_vrp.json")
 args = parser.parse_args()
 config_path = args.config
 
