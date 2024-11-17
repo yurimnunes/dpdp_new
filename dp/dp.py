@@ -159,7 +159,7 @@ def dp_step(step, beam, graph, candidate_queue, collapse=True, use_weak_version=
     update_beam(actions, beam, compute_unique_device, graph, parents, profiler, scores)
 
     if profile:
-        #profiler.print_summary(step)
+        profiler.print_summary(step)
 
     return beam
 
