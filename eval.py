@@ -152,7 +152,7 @@ def eval_dataset(dataset_path, beam_size, opts):
         dataset = pack_heatmaps(dataset, opts)
         results = _eval_dataset(problem, dataset, beam_size, opts, device, no_progress_bar=opts.no_progress_bar)
 
-    #costs, durations, tours = print_statistics(results, opts)
+    costs, durations, tours = print_statistics(results, opts)
 
     dataset_basename, ext = os.path.splitext(os.path.split(dataset_path)[-1])
     heatmap_basename = os.path.splitext(os.path.split(opts.heatmap)[-1])[0] if opts.heatmap is not None else ""

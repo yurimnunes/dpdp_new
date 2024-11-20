@@ -114,7 +114,7 @@ for ii in range(len(lista_arquivos)):
     # 1) Geração de features dos nós:
     # 1.1) Feature coordenadas geográficas (distância Euclidiana)
     # do depot e de todos os nós:
-    grid_size = 1
+    grid_size = 1000
     # normalização das coordenadas x e y
     x_normalizado = nos_coordenadas[0][0] / grid_size
     y_normalizado = nos_coordenadas[0][1] / grid_size

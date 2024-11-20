@@ -2,6 +2,7 @@ from torch.utils.data import Dataset
 import torch
 import os
 import pickle
+import numpy as np
 
 from .generate_uchoa_data import generate_uchoa_instances
 
@@ -89,10 +90,15 @@ class VRPDataset(Dataset):
 
         self.data_set = []
         if filename is not None:
-            assert os.path.splitext(filename)[1] == '.pkl'
+            assert os.path.splitext(filename)[1] == '.pkl' or os.path.splitext(filename)[1] == '.npy'
 
             with open(filename, 'rb') as f:
-                data = pickle.load(f)
+                
+                if os.path.splitext(filename)[1] == '.npy':
+                    data = np.load(filename, allow_pickle=True)
+                    #data = data[offset:offset+num_samples]
+                else:
+                    data = pickle.load(f)
             self.data = [make_instance(args, normalize) for args in data[offset:offset+num_samples]]
 
         else:
