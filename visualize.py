@@ -320,7 +320,7 @@ if __name__ == "__main__":
         if i + 1 == end or subplot_idx + 1 == rows * cols:
 
             if args.savefile is not None:
-                plt.savefig(args.savefile, bbox_inches='tight')
+                plt.savefig(args.savefile + str(i), bbox_inches='tight')
 
             # Finalize/show plot
             plt.show(block=True)

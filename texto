@@ -1,0 +1,26 @@
+python eval.py dados_validacao.npy --problem cvrp --decode_strategy dpdp --score_function heatmap_potential --beam_size 100000 --heatmap_threshold 1e-5 --heatmap results/vrp/dados_validacao/heatmaps/heatmaps_vrp_uchoa100.pkl
+python eval.py dados_validacao.npy --problem cvrp --decode_strategy dpdp --score_function heatmap_potential --beam_size 100000 --heatmap_threshold 1e-5 --heatmap results/vrp/dados_validacao/heatmaps/heatmaps_vrp_nazari100_routes.pkl
+
+experiments/main_results.sh cvrp vrp/vrp_nazari100_test_seed1234 heatmaps_vrp_nazari100
+
+#experiments/score_function.sh cvrp vrp/vrp_nazari100_validation_seed4321 heatmaps_vrp_nazari100
+
+#experiments/score_function.sh cvrp vrp/vrp_nazari100_validation_seed4321 heatmaps_vrp_nazari100
+
+#experiments/adjacency.sh cvrp vrp/vrp_nazari100_validation_seed4321 heatmaps_vrp_nazari100
+
+# heatmap with uchoa
+python visualize.py --problem vrp --instances dados_validacao.npy \
+ --solutions results/vrp/dados_validacao/dados_validacaooffs0n10000-heatmaps_vrp_uchoa100-dpdp10heatmap_potential-th1e-05.npy.pkl \
+  --heatmaps results/vrp/dados_validacao/heatmaps/heatmaps_vrp_uchoa100.pkl\
+  --heatmap_no_depot --heatmap_threshold 0.5 --savefile plots/uchoa_
+
+
+# heatmap with nazari
+python visualize.py --problem vrp --instances dados_validacao.npy \
+ --solutions results/vrp/dados_validacao/dados_validacaooffs0n10000-heatmaps_vrp_nazari100_routes-dpdp100000heatmap_potential-th1e-05.npy.pkl \
+  --heatmaps results/vrp/dados_validacao/heatmaps/heatmaps_vrp_nazari100_routes.pkl\
+  --heatmap_no_depot --heatmap_threshold 0.5 --savefile plots/nazari_
+# Validation set
+python export_heatmap.py --problem vrp --checkpoint logs/vrp_nazari100/best_val_loss_checkpoint.tar --instances dados_validacao.npy -f --batch_size 50
+python export_heatmap.py --problem vrp --checkpoint logs/vrp_uchoa100/best_val_loss_checkpoint.tar --instances dados_validacao.npy -f --batch_size 50

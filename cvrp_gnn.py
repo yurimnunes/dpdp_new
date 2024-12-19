@@ -161,7 +161,8 @@ val_end = int(0.9 * n_total)       # 90%
 
 # Dividir os dados
 dados_treino = entrada_gnn_numpy[:train_end]
-dados_validacao = entrada_gnn_numpy[train_end:val_end]
+#dados_validacao = entrada_gnn_numpy[train_end:val_end]
+dados_validacao = entrada_gnn_numpy[train_end:train_end+10]
 dados_teste = entrada_gnn_numpy[val_end:]
 
 # Salvar cada parte em arquivos .npy
@@ -218,7 +219,8 @@ val_end = int(0.9 * n_total)       # 90%
 
 # Dividir os dados
 dados_solucao_treino = dados_saida_gnn_numpy[:train_end]
-dados_solucao_validacao = dados_saida_gnn_numpy[train_end:val_end]
+#dados_solucao_validacao = dados_saida_gnn_numpy[train_end:val_end]
+dados_solucao_validacao = dados_saida_gnn_numpy[train_end:train_end+10]
 dados_solucao_teste = dados_saida_gnn_numpy[val_end:]
 
 # Salvar cada parte em arquivos .npy
